@@ -100,19 +100,23 @@ class ProductController
 
     public function productList1()
     {
-        $sql = "SELECT p.*, c.titre AS category_name 
+        // Ensure you're selecting the 'id_category' field from the category table as well
+        $sql = "SELECT p.*, c.id_category, c.titre AS category_name 
                 FROM product p 
                 JOIN category c ON p.id_cat = c.id_category";
+        
         $db = config::getConnexion();
-
+    
         try {
             $query = $db->prepare($sql);
             $query->execute();
-            return $query->fetchAll();
+            return $query->fetchAll(); // This will now include the 'id_category' from the category table
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }
     }
+    
+    
 }
 
 class CategoryController

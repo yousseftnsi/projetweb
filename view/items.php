@@ -1,10 +1,12 @@
 <?php
-
 include "../controller/ProductController.php";
-$productC = new ProductController();
-$list = $productC->productList();
-?>
 
+$productC = new ProductController();
+$list = $productC->productList1();
+
+$categoryC = new CategoryController();
+$liste = $categoryC->CategoryList();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +14,7 @@ $list = $productC->productList();
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Blog - AgriCulture Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Store - AgriCulture Bootstrap Template</title>
 
   <!-- Favicons -->
   <link href="../public/img/logo-bare.jpg" rel="icon">
@@ -23,159 +23,202 @@ $list = $productC->productList();
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../public/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="../public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
   <link href="../public/assets/css/main.css" rel="stylesheet">
+<style>
+/* Category Filter */
+.category-filters {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center */
+  flex-wrap: wrap;
+  margin: 2rem 0;          /* Adds space above and below the filter */
+}
 
-  <!-- =======================================================
-  * Template Name: AgriCulture
-  * Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+.form-check-inline {
+  margin-right: 15px;
+}
+
+.form-check-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #444444;
+  cursor: pointer;
+}
+
+.form-check-input {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Active and Hover States for Filters */
+.form-check-input:checked {
+  background-color: #4154f1;
+  border-color: #4154f1;
+}
+
+.form-check-input:checked + .form-check-label {
+  color: #4154f1;
+}
+
+/* Hover effect for labels */
+.form-check-label:hover {
+  color: #717ff5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category-filters {
+    justify-content: center;
+  }
+  
+  .form-check-inline {
+    margin-bottom: 10px;
+  }
+}
+
+
+</style>
+
 </head>
 
-<body class="index-page">
+<body>
 
-  <header id="header" class="header d-flex align-items-center position-relative">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+<header id="header" class="header d-flex align-items-center position-relative">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="home.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="../public/img/logo.jpg" alt="AgriCulture">
-        <!-- <h1 class="sitename">AgriCulture</h1>  -->
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="home.html" >Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="services.html">Home Grown</a></li>
+        <li><a href="testimonials.html">News</a></li>
+        <li><a href="blog.html">Reviews</a></li>
+        <li class="dropdown"><a class="active" href="items.php"><span>Store</span></a></li>
+        <li><a href="dashboard.php">MySpace</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <div class="login-container">
+      <a href="#loginModal" class="login-button">
+        <span>Log In</span>
+        <i class="bi bi-person-circle"></i>
       </a>
-
-      
-
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="home.html" class="active">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="services.html">home grown</a></li>
-          <li><a href="testimonials.html">news</a></li>
-          <li><a href="blog.html">reviews</a></li>
-          <li class="dropdown"><a href="items.php"><span>store</span></i></a>
-            <li><a href="dashboard.php">MySpace</a></li>
-          </li>
-        </ul>
-        
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-      <div class="login-container">
-        <a href="#loginModal" class="login-button">
-          <span>Log In</span>
-          <i class="bi bi-person-circle"></i>
-        </a>
-      </div>
-
     </div>
-    
-    
-  </header>
 
-  <main class="main">
+  </div>
+</header>
 
-    <!-- Page Title -->
-    <div class="page-title dark-background" data-aos="fade" style="background-image: url(../public/img/page-title-bg.webp);">
-      <div class="container position-relative">
-        <h1>Blog</h1>
-        <p>
-          Home
-          /
-          Blog</p>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Blog</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
+<main class="main">
 
+  <!-- Search Bar -->
+  <div class="search-bar ">
+    <input type="text" id="myInput" placeholder="Search for products..." >
+  </div>
 
-    <div class="product-list">
-    <!-- Add Product Link at the top -->
-    
-    <!-- Grid layout for products -->
-    <div class="product-grid">
-        <?php foreach ($list as $product) { ?>
-        <div class="product-item">
-            <div class="product-name"><?= $product['name']; ?></div>
-            <div class="product-price">$<?= $product['price']; ?></div>
-            <div class="product-category"><?= $product['category']; ?></div>
-            
+  <!-- Category Filters -->
+  <div class="category-filters mb-4">
+    <div class="form-check form-check-inline">
+      <input 
+        class="form-check-input category-filter" 
+        type="radio" 
+        name="categoryFilter" 
+        id="category-all" 
+        value="all" 
+        checked>
+      <label class="form-check-label" for="category-all">All</label>
+    </div>
+
+    <?php if (!empty($liste)) {
+      foreach ($liste as $category) { 
+          $categoryId = isset($category['id_category']) ? $category['id_category'] : '';
+          $categoryTitle = isset($category['titre']) ? $category['titre'] : 'Unnamed Category';
+    ?>
+    <div class="form-check form-check-inline">
+      <input 
+        class="form-check-input category-filter" 
+        type="radio" 
+        name="categoryFilter" 
+        id="category-<?= htmlspecialchars($categoryId); ?>" 
+        value="<?= htmlspecialchars($categoryId); ?>">
+      <label class="form-check-label" for="category-<?= htmlspecialchars($categoryId); ?>">
+        <?= htmlspecialchars($categoryTitle); ?>
+      </label>
+    </div>
+    <?php } } else { ?>
+      <p>No categories available.</p>
+    <?php } ?>
+  </div>
+
+  <!-- Product List -->
+  <div class="product-grid row" id="myTable">
+  <?php foreach ($list as $product) { 
+    $productImage = isset($product['image']) ? htmlspecialchars($product['image']) : 'default.jpg';
+    $productName = isset($product['name']) ? htmlspecialchars($product['name']) : 'Unnamed Product';
+    $productPrice = isset($product['price']) ? htmlspecialchars($product['price']) : '0.00';
+    $productCategory = isset($product['category_name']) ? htmlspecialchars($product['category_name']) : 'Uncategorized';
+    // Now, using category_id from the category table
+    $productCategoryId = isset($product['id_category']) ? htmlspecialchars($product['id_category']) : '0';
+?>
+<!-- Debugging output -->
+<div class="product-item col-md-4 mb-4" data-category-id="<?= $productCategoryId; ?>">
+    <div class="card">
+        <img src="../uploads/<?= $productImage; ?>" class="card-img-top" alt="<?= $productName; ?>">
+        <div class="card-body">
+            <h5 class="product-name card-title"><?= $productName; ?></h5>
+            <p class="product-price card-text">$<?= $productPrice; ?></p>
+            <p class="product-category text-muted"><?= $productCategory; ?></p>
         </div>
-        <?php } ?>
     </div>
 </div>
+<?php } ?>
 
+  </div>
 
+</main>
 
+<!-- Vendor JS Files -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<!-- Custom JS -->
+<script>
+ $(document).ready(function () {
+  // Filter products based on category
+  $(".category-filter").on("change", function () {
+    const selectedCategory = $("input[name='categoryFilter']:checked").val();
+    console.log("Selected Category:", selectedCategory);  // Debugging log
 
+    $(".product-item").each(function () {
+      const productCategoryId = $(this).data("category-id");
+      console.log("Product Category ID:", productCategoryId);  // Debugging log
 
- 
+      if (selectedCategory === "all" || productCategoryId == selectedCategory) {
+        $(this).show(); // Show products with matching category
+      } else {
+        $(this).hide(); // Hide non-matching products
+      }
+    });
+  });
 
-    <!-- Blog Pagination Section -->
-    <section id="blog-pagination" class="blog-pagination section">
+  // Search functionality
+  $("#myInput").on("keyup", function () {
+    const value = $(this).val().toLowerCase();
+    $("#myTable .product-item").filter(function () {
+      const name = $(this).find(".product-name").text().toLowerCase();
+      $(this).toggle(name.indexOf(value) > -1);
+    });
+  });
+});
 
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <ul>
-            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#" class="active">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>...</li>
-            <li><a href="#">10</a></li>
-            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
-
-    </section><!-- /Blog Pagination Section -->
-
-    
-
-  </main>
-
- 
-
-          
-   
-
-
-
-
-  
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
- <!-- Vendor JS Files -->
- <script src="../public/assets/vendor/apexcharts/apexcharts.min.js"></script>
-      <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="../public/assets/vendor/chart.js/chart.umd.js"></script>
-      <script src="../public/assets/vendor/echarts/echarts.min.js"></script>
-      <script src="../public/assets/vendor/quill/quill.js"></script>
-      <script src="../public/assets/vendor/simple-datatables/simple-datatables.js"></script>
-      <script src="../public/assets/vendor/tinymce/tinymce.min.js"></script>
-      <script src="../public/assets/vendor/php-email-form/validate.js"></script>
-    
-      <!-- Template Main JS File -->
-      <script src="../public/assets/js/main.js"></script>
+</script>
 
 </body>
-
 </html>

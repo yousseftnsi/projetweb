@@ -1,6 +1,8 @@
 <?php
 include "../model/model.php";
 include "../controller/ProductController.php";
+$Category = new CategoryController();
+$prod = $Category->CategoryList();
 $product = null;
 $error = "";
 
@@ -409,8 +411,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <label for="price">Price</label>
     <input class="form-control" type="text" id="price" name="price" value="<?php echo $product['price']; ?>" required>
     
-    <label for="category">Category</label>
-    <input class="form-control" type="text" id="category" name="category" value="<?php echo $product['category']; ?>" required>
+    <select   name="id_cat">
+                                        
+                                          
+                                        <?php
+                                        foreach($prod as $caa){
+                                          ?>
+                                              <option value="<?php echo $caa['id_category'] ?>"><?php echo $caa['titre'] ?></option>
+                                           <?php } ?>
+                                                           </select>
 
     <label for="description">description</label>
     <input class="form-control" type="text" id="description" name="description" value="<?php echo $product['description']; ?>" required>

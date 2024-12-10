@@ -253,7 +253,7 @@ $list = $productC->productList1();
             <li class="nav-item dropdown pe-3">
     
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                <img src="../public/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                
                 <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
               </a><!-- End Profile Iamge Icon -->
     
@@ -382,15 +382,15 @@ $list = $productC->productList1();
     <div class="product-grid">
         <?php foreach ($list as $product) { ?>
         <div>
-        <div  class="product-category"><?php echo"<img src='../uploads/".$product['image']."'>" ?>
+            <div  class="product-category"><?php echo"<img src='../uploads/".$product['image']."'>" ?>
       <style>
             img{
-            width: 100%;
-                        height: 100%;         
+            width: 300px;
+                        height: 300px;         
             }
             
             </style>
-</div>
+            </div>
             <div class="product-name"><?= $product['name']; ?></div>
             <div class="product-price">$<?= $product['price']; ?></div>
             <div class="product-category"><?= $product['category_name']; ?></div>

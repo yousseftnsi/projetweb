@@ -382,10 +382,10 @@ $list = $categoryc->CategoryList();
         <div>
             <div class="product-name"><?= $category['titre']; ?></div>
         
-            <div class="product-actions">
-            <a   data-toggle="tooltip" data-original-title="Edit" href="updatecategory.php?id=<?php echo $category['id_category']; ?>"  >Modifier</a>
+            <div >
+            <a   data-toggle="tooltip" data-original-title="Edit" href="updatecategory.php?id=<?php echo $category['id_category']; ?>"  ><button class="btn btn-primary">modifier</button></a>
 
-                <a href="deletecategory.php?id_category=<?= $category['id_category']; ?>">Delete</a>
+                <a href="deletecategory.php?id_category=<?= $category['id_category']; ?>"> <button class="btn btn-danger">Delete</button>   </a>
             </div>
         </div>
         <?php } ?>
