@@ -115,7 +115,24 @@ class ProductController
             die('Error: ' . $e->getMessage());
         }
     }
-    
+
+    public function getCategoryProductCounts()
+{
+    $sql = "SELECT c.titre AS category_name, COUNT(p.id) AS product_count
+            FROM category c
+            LEFT JOIN product p ON c.id_category = p.id_cat
+            GROUP BY c.id_category, c.titre";
+    $conn = config::getConnexion();
+
+    try {
+        $query = $conn->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        die('Erreur: ' . $e->getMessage());
+    }
+}
+
     
 }
 
@@ -202,6 +219,9 @@ try{ $recipesStatement = $db->prepare($sqlc);
             die('Erreur: ' . $e->getMessage());
         }
     }
+
+
+    
 
    
 }
