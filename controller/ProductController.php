@@ -16,9 +16,9 @@ class ProductController
             die('Erreur: ' . $e->getMessage());
         }
     }
-    function getProductById($id)
+    function getProductById($id_product)
     {
-        $sql = "SELECT * from product where id = $id";
+        $sql = "SELECT * from product where id_product = $id_product";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -34,13 +34,13 @@ class ProductController
     // add new product
     public function addProduct($product)
     {
-        $sql = "INSERT INTO product (id,name,price,id_cat,description,image)
-        VALUES (:id,:name,:price,:id_cat,:description,:image)";
+        $sql = "INSERT INTO product (id_product,name,price,id_cat,description,image)
+        VALUES (:id_product,:name,:price,:id_cat,:description,:image)";
         $conn = config::getConnexion();
 
         try {
             $query = $conn->prepare($sql);
-            $query->execute(['id'=> $product->getId(),
+            $query->execute(['id_product'=> $product->getId(),
                 'name' => $product->getName(),
                 'price' => $product->getPrice(),
                 'id_cat' => $product->getid_cat(),
@@ -54,7 +54,7 @@ class ProductController
         }
     }
 
-    function updateProduct($product, $id)
+    function updateProduct($product, $id_product)
     {
         $db = config::getConnexion();
 
@@ -68,7 +68,7 @@ class ProductController
         );
         try {
             $query->execute([
-                'id' => $id,
+                'id_product' => $id_product,
                 'name' => $product->getName(),
                 'price' => $product->getPrice(),
                 'id_cat' => $product->getid_cat(),
@@ -85,12 +85,12 @@ class ProductController
 
 
     // delete one product by id
-    public function deleteProduct($id)
+    public function deleteProduct($id_product)
     {
-        $sql = "DELETE FROM product WHERE id=:id";
+        $sql = "DELETE FROM product WHERE id_product=:id_product";
         $conn = config::getConnexion();
         $req = $conn->prepare($sql);
-        $req->bindValue(':id', $id);
+        $req->bindValue(':id_product', $id_product);
         try {
             $req->execute();
         } catch (Exception $e) {
@@ -118,7 +118,7 @@ class ProductController
 
     public function getCategoryProductCounts()
 {
-    $sql = "SELECT c.titre AS category_name, COUNT(p.id) AS product_count
+    $sql = "SELECT c.titre AS category_name, COUNT(p.id_product) AS product_count
             FROM category c
             LEFT JOIN product p ON c.id_category = p.id_cat
             GROUP BY c.id_category, c.titre";

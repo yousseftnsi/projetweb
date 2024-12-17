@@ -336,6 +336,9 @@ $prod = $Category->CategoryList();
                 <a href="myitems.php">
                   <i class="bi bi-circle"></i><span>my items</span>
                 </a>
+                <a href="back/commandes_view.php">
+                <i class="bi bi-circle"></i><span>my commands</span>
+              </a>
               </li>
               
             </ul>

@@ -330,6 +330,9 @@ $list = $categoryc->CategoryList();
                 <a href="myitems.php">
                   <i class="bi bi-circle"></i><span>my items</span>
                 </a>
+                <a href="back/commandes_view.php">
+                <i class="bi bi-circle"></i><span>my commands</span>
+              </a>
               </li>
               
             </ul>
@@ -383,7 +386,7 @@ $list = $categoryc->CategoryList();
             <div class="product-name"><?= $category['titre']; ?></div>
         
             <div >
-            <a   data-toggle="tooltip" data-original-title="Edit" href="updatecategory.php?id=<?php echo $category['id_category']; ?>"  ><button class="btn btn-primary">modifier</button></a>
+            <a   data-toggle="tooltip" data-original-title="Edit" href="updatecategory.php?id_product=<?php echo $category['id_category']; ?>"  ><button class="btn btn-primary">modifier</button></a>
 
                 <a href="deletecategory.php?id_category=<?= $category['id_category']; ?>"> <button class="btn btn-danger">Delete</button>   </a>
             </div>

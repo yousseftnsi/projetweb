@@ -10,8 +10,8 @@ $error = "";
 $productController = new ProductController();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["id"]) && isset($_POST["name"]) && isset($_POST["price"]) && isset($_POST["id_cat"]) && isset($_POST["description"])) {
-        if (!empty($_POST["id"]) && !empty($_POST["name"]) && !empty($_POST["price"]) && !empty($_POST["id_cat"]) && !empty($_POST["description"])) {
+    if (isset($_POST["id_product"]) && isset($_POST["name"]) && isset($_POST["price"]) && isset($_POST["id_cat"]) && isset($_POST["description"])) {
+        if (!empty($_POST["id_product"]) && !empty($_POST["name"]) && !empty($_POST["price"]) && !empty($_POST["id_cat"]) && !empty($_POST["description"])) {
             // Create product object
             $product = new ProductM(
                 null,
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 htmlspecialchars($_POST['description'])
             );
             // Call the update function
-            $productController->updateProduct($product, intval($_POST['id']));
+            $productController->updateProduct($product, intval($_POST['id_product']));
             // Redirect after successful update
             header('Location: myitems.php');
             exit();
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 // Fetch the product by ID
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+if (isset($_GET['id_product']) && is_numeric($_GET['id_product'])) {
     $product = $productController->getProductById(intval($_GET['id']));
 } else {
     $error = "Product ID is invalid or missing.";
@@ -398,13 +398,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         <h1>modifier un produit</h1>
       <?php
     // $_POST['id'] récupérer à partir du form relative au bouton update dans la page productList
-    if (isset($_POST['id'])) {
+    if (isset($_POST['id_product'])) {
         //récupération du produit à mettre à jour par son ID
-        $product = $productController->getProductById($_POST['id']);
+        $product = $productController->getProductById($_POST['id_product']);
     ?>
         <!-- remplir le vormulaire par les données du produits à mettre à jour -->
         <form id="product" action="update.php" method="POST">
-    <input type="hidden" id="id" name="id" value="<?php echo $product['id']; ?>">
+    <input type="hidden" id="id" name="id" value="<?php echo $product['id_product']; ?>">
     <label for="name">Product Name</label>
     <input class="form-control" type="text" id="name" name="name" value="<?php echo $product['name']; ?>" required>
     

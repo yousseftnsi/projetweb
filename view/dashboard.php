@@ -301,6 +301,15 @@ $data = $ProductController->getCategoryProductCounts();
           </li>
           
         </ul>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          
+          <li>
+            <a href="back\commandes_view.php">
+              <i class="bi bi-circle"></i><span>my Comandes</span>
+            </a>
+          </li>
+          
+        </ul>
       </li>
 
 

@@ -101,7 +101,10 @@ $liste = $categoryC->CategoryList();
         <li><a href="testimonials.html">News</a></li>
         <li><a href="blog.html">Reviews</a></li>
         <li class="dropdown"><a class="active" href="items.php"><span>Store</span></a></li>
+        <li><a href="front\panier.php">cart</a></li>
         <li><a href="dashboard.php">MySpace</a></li>
+
+
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
@@ -170,11 +173,21 @@ $liste = $categoryC->CategoryList();
 <!-- Debugging output -->
 <div class="product-item col-md-4 mb-4" data-category-id="<?= $productCategoryId; ?>">
     <div class="card">
+
         <img src="../uploads/<?= $productImage; ?>" class="card-img-top" alt="<?= $productName; ?>">
         <div class="card-body">
+        <form method="POST" action="../controller/panierController.php">
+                        <input type="hidden" name="id_product" value="<?= $product['id_product'] ?>">
+                        <input type="hidden" name="name" value="<?= $product['name'] ?>">
+                        <input type="hidden" name="price" value="<?= $product['price'] ?>">
+                        <input type="number" name="quantity" min="1" value="1">
+                        <button type="submit" name="add_to_cart">Add to Cart</button>
+                    </form>
+
             <h5 class="product-name card-title"><?= $productName; ?></h5>
             <p class="product-price card-text">$<?= $productPrice; ?></p>
             <p class="product-category text-muted"><?= $productCategory; ?></p>
+            <a href="front/panier.php">+ Add Product</a>
         </div>
     </div>
 </div>

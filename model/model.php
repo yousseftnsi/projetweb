@@ -1,7 +1,7 @@
 <?php
 
 class Product{
-    private $id;
+    private $id_product;
     private $name;
     private $price;
     private $id_cat;
@@ -10,8 +10,8 @@ class Product{
 
     private $image;
 
-    public function __construct($id,$name,$price,$id_cat,$description,$image) {
-        $this->id=$id;
+    public function __construct($id_product,$name,$price,$id_cat,$description,$image) {
+        $this->id_product=$id_product;
         $this->name = $name;
         $this->price = $price;
         $this->id_cat = $id_cat;
@@ -22,7 +22,7 @@ class Product{
 
     public function getId()
     {
-        return $this->id;
+        return $this->id_product;
     }
 
 
@@ -144,7 +144,7 @@ class category{
 
 
 class ProductM{
-    private $id;
+    private $id_product;
     private $name;
     private $price;
     private $id_cat;
@@ -152,8 +152,8 @@ class ProductM{
     private $description;
 
 
-    public function __construct($id,$name,$price,$id_cat,$description) {
-        $this->id=$id;
+    public function __construct($id_product,$name,$price,$id_cat,$description) {
+        $this->id_product=$id_product;
         $this->name = $name;
         $this->price = $price;
         $this->id_cat = $id_cat;
@@ -163,7 +163,7 @@ class ProductM{
 
     public function getId()
     {
-        return $this->id;
+        return $this->id_product;
     }
 
 

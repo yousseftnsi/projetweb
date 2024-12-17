@@ -3,7 +3,7 @@ include "../model/model.php";
 include "../controller/ProductController.php";
 
 $service=new  CategoryController();
-$prod=$service->afficherCategoryId($_GET['id']);
+$prod=$service->afficherCategoryId($_GET['id_product']);
 
 
 ?>

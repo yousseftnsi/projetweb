@@ -2,7 +2,7 @@
 include_once '../controller/ProductController.php';
 include_once '../model/model.php';
 
-if(!isset($_POST['id'])||!isset($_POST['name'])||!isset($_POST['price'])||!isset($_POST['id_cat'])||!isset($_POST['description']))
+if(!isset($_POST['id_product'])||!isset($_POST['name'])||!isset($_POST['price'])||!isset($_POST['id_cat'])||!isset($_POST['description']))
 {
 	echo "erreur de ";
 }
